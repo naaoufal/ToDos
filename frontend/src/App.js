@@ -11,6 +11,7 @@ function App() {
   const [active, setActive] = useState(true)
   const [compeletd, setCompeletd] = useState(false)
   const [data, setData] = useState([])
+  const [id, setID] = useState("")
 
   //let history = useHistory()
 
@@ -34,9 +35,20 @@ function App() {
     })
   }
 
-  // archive a todo list :
+  // archive a todo list by enter event :
   const archiveTodo = (id) => {
-    console.log(id)
+    fetch(`http://localhost:3001/api/todos/edit/${id}`, {
+      method : 'PATCH',
+      headers : {
+        'Content-Type' : 'application/json'
+      },
+      body : JSON.stringify({
+        name : currName,
+        stat : "archive"
+      })
+    }).then(res => {
+      renderToDoData()
+    })
   }
 
   // edit on a todo list :
@@ -52,7 +64,7 @@ function App() {
         stat : "active"
       })
     }).then(res => {
-      window.location()
+      renderToDoData()
     })
   }
 
@@ -102,34 +114,50 @@ function App() {
                 <div className="data" key={i._id}>
                   {toggle ? 
                   <div className="ts">
-                    <p onDoubleClick={toggleInput}> {i.name} {i._id}</p>
-                    <button
-                    onClick={archiveTodo(i._id)}
-                    >
-                      &#9747;
-                    </button>
+                    <p onDoubleClick={toggleInput}> {i.name} 
+                      {/* <button id="btn" 
+                      data-id={i._id}
+                      onClick={archiveTodo(i._id)}
+                      value={i._id}
+                      >test</button> */}
+                    </p>
                   </div>
                   :
-                  <input
-                  onChange={handleChange}
-                  type='text'
-                  placeholder={i.name}
-                  onChange={(event) => {setCurrName(event.target.value)}}
-                  onKeyDown={(e) => {
-                    if(e.key == 'Enter') {
-                      editValueData(i._id)
-                    }
-                  }}
-                  />
+                  <div>
+                    <br />
+                    <input
+                    onChange={handleChange}
+                    id="ed"
+                    type='text'
+                    placeholder={i.name}
+                    onChange={(event) => {setCurrName(event.target.value)}}
+                    onKeyDown={(e) => {
+                      if(e.key == 'Enter') {
+                        editValueData(i._id)
+                      }
+                    }}
+                    />
+                    <input
+                    placeholder="*"
+                    className="default"
+                    onKeyDown={(e) => {
+                      if(e.key == 'Enter'){
+                        archiveTodo(i._id)
+                      }
+                    }}/>
+                  </div>
                   }
-                  
+                  {/* <button
+                      onClick={archiveTodo(i._id)}
+                      >
+                      &#9747;
+                  </button> */}
                 </div>
                 :
                 false
             ))}
-            {/* <button>All</button>
             <button onClick={showMethod}>Active</button>
-            <button onClick={showMethod}>Completed</button> */}
+            <button onClick={showMethod}>Completed</button>
           </header>
           
         </section>

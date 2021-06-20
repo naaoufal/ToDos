@@ -68,6 +68,16 @@ ul li {
   text-decoration: none;
 }
 
+#ed {
+  border: none;
+}
+
+.default {
+  cursor: default;
+  width: 1%;
+  border: none;
+}
+
 .inp {
   position: relative;
   margin: 0;
