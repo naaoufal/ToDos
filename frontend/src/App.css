@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .App-logo {
@@ -35,4 +36,45 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.sec {
+  background: #fff;
+  margin: 130px 0 40px 0;
+  position: relative;
+}
+
+.header {
+  color : rgba(175, 47, 47, 0.15);
+  width: 100%;
+  font-size: 100px;
+  font-weight: 100;
+  top: -200px;
+  position: absolute;
+  text-align: center;
+}
+
+.for {
+  font-weight: 300;
+  line-height: 1px;
+}
+
+.data {
+  font-size: 12px;
+  color : black;
+}
+
+ul li {
+  text-decoration: none;
+}
+
+.inp {
+  position: relative;
+  margin: 0;
+  width: 40%;
+  font-size: 24px;
+  font-family: inherit;
+  font-weight: inherit;
+  line-height: 1.4em;
+  letter-spacing: normal;
 }

@@ -1,0 +1,27 @@
+GET http://localhost:3001/api/todos/all
+
+###
+POST http://localhost:3001/api/todos/add
+Content-Type: application/json
+
+{
+    "name" : "todo3",
+    "stat" : "archive"
+}
+
+###
+DELETE http://localhost:3001/api/todos/delete/60ce6060276ff54bd03f0e45
+Content-Type: application/json
+
+{
+    "name" : here we put the name by request
+}
+
+###
+PATCH http://localhost:3001/api/todos/edit/60ce831ca20f172090f5b9fc
+Content-Type: application/json
+
+{
+    "name" : "todo19",
+    "stat" : "active"
+}

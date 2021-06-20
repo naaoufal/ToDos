@@ -1,20 +1,23 @@
 const express = require("express")
 const cors = require('cors');
-const connectDB = require("./back_end/config/mongodb")
+// const connectDB = require("./config/mongodb")
+const mongoose = require("mongoose")
 const app = express()
+require('dotenv').config()
 
 // connect to database with mongodb:
-connectDB()
+mongoose.connect("mongodb://localhost/todo", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
 
 app.use(express.json())
 app.use(cors())
 
 
 // declaring url endpoints :
-app.use("/api/admins", require("./back_end/routes/admins"))
-app.use("/api/tags", require("./back_end/routes/tags"))
-app.use("/api/staffs", require("./back_end/routes/staffs"))
-app.use("/api/clients", require("./back_end/routes/clients"))
+app.use("/api/todos", require("./routes/todos"))
+app.use("/api/archives", require("./routes/archives"))
 
 
 // start the server

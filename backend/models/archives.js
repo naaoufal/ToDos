@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const todosSchema = new mongoose.Schema({
+const archivesSchema = new mongoose.Schema({
 
     name : {
         type : String,
@@ -13,4 +13,4 @@ const todosSchema = new mongoose.Schema({
 
 })
 
-module.exports = mongoose.model('todos', todosSchema)
+module.exports = mongoose.model('archives', archivesSchema)
